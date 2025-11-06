@@ -1,0 +1,8 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="alert alert-warning text-center">
+  <h4>Você já solicitou adoção para {{ animal.nome }} 🐶</h4>
+  <p>O cuidador será notificado. Aguarde retorno antes de fazer um novo pedido.</p>
+  <a href="/" class="btn btn-green mt-3">Voltar</a>
+</div>
+{% endblock %}
