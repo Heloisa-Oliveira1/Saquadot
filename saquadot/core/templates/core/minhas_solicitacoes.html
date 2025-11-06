@@ -1,0 +1,117 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h3 class="text-center mb-4">🐾 Minhas Solicitações de Adoção</h3>
+
+{% if adocoes %}
+  <div class="table-responsive">
+    <table class="table table-striped align-middle shadow-sm">
+      <thead class="table-success">
+        <tr>
+          <th>Animal</th>
+          <th>Cuidador</th>
+          <th>Contato</th>
+          <th>Data</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for adocao in adocoes %}
+          <tr>
+            <td>{{ adocao.animal.nome }}</td>
+            <td>{{ adocao.animal.cuidador.username }}</td>
+
+            <!-- 📞 Contato -->
+            <td>
+              {% if adocao.aprovado %}
+                {% if adocao.animal.contato %}
+                  <div class="d-flex align-items-center">
+                    <span id="contato-{{ adocao.id }}">{{ adocao.animal.contato }}</span>
+                    <button class="btn btn-sm btn-outline-success ms-2 copiar-btn"
+                            data-contato-id="{{ adocao.id }}"
+                            title="Copiar contato 📋">📋</button>
+                  </div>
+                {% else %}
+                  <span class="text-muted">Não informado</span>
+                {% endif %}
+              {% else %}
+                <span class="text-muted">Disponível após aprovação</span>
+              {% endif %}
+            </td>
+
+            <td>{{ adocao.data_pedido|date:"d/m/Y H:i" }}</td>
+
+            <td>
+              {% if adocao.aprovado %}
+                <span class="badge bg-success">Aprovado</span>
+              {% else %}
+                <span class="badge bg-warning text-dark">Pendente</span>
+              {% endif %}
+            </td>
+
+            <td>
+              {% if not adocao.aprovado %}
+                <a href="{% url 'retirar_pedido' adocao.id %}" class="btn btn-sm btn-danger">Retirar Pedido</a>
+              {% else %}
+                <button class="btn btn-sm btn-secondary" disabled>Concluído</button>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ✅ Toast discreto de "copiado com sucesso" -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+    <div id="toastCopia"
+         class="toast align-items-center text-white bg-success border-0 shadow"
+         role="alert" aria-live="assertive" aria-atomic="true"
+         data-bs-delay="2000">
+      <div class="d-flex align-items-center">
+        <div class="toast-body">
+          📋 Contato copiado com sucesso!
+        </div>
+        <button type="button"
+                class="btn-close btn-close-white me-2 m-auto"
+                data-bs-dismiss="toast"
+                aria-label="Fechar"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧠 Script de cópia com feedback -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const botoes = document.querySelectorAll(".copiar-btn");
+    const toastEl = document.getElementById("toastCopia");
+    const toast = new bootstrap.Toast(toastEl);
+
+    botoes.forEach(btn => {
+      btn.addEventListener("click", function() {
+        const id = this.getAttribute("data-contato-id");
+        const texto = document.getElementById("contato-" + id).innerText.trim();
+
+        navigator.clipboard.writeText(texto).then(() => {
+          toast.show(); // ✅ aparece só ao clicar
+          this.textContent = "✅";
+          this.classList.remove("btn-outline-success");
+          this.classList.add("btn-success");
+          this.disabled = true;
+
+          setTimeout(() => {
+            this.textContent = "📋";
+            this.classList.remove("btn-success");
+            this.classList.add("btn-outline-success");
+            this.disabled = false;
+          }, 1500);
+        });
+      });
+    });
+  });
+  </script>
+
+{% else %}
+  <p class="text-center text-muted">Você ainda não fez nenhuma solicitação de adoção 🐕</p>
+{% endif %}
+{% endblock %}

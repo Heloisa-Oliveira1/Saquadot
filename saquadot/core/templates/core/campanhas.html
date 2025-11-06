@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2 class="text-center mb-4">📢 Campanhas e Feiras de Adoção</h2>
+<div class="list-group">
+  {% for campanha in campanhas %}
+    <div class="list-group-item list-group-item-action mb-3">
+      <h5>{{ campanha.titulo }}</h5>
+      <p>{{ campanha.descricao }}</p>
+      <p><strong>Data:</strong> {{ campanha.data_evento }} | <strong>Local:</strong> {{ campanha.local }}</p>
+      <span class="badge bg-success">{{ campanha.tipo }}</span>
+    </div>
+  {% empty %}
+    <p class="text-center">Nenhuma campanha cadastrada no momento 🐕</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h3 class="text-center mb-4">📋 Pedidos de Adoção</h3>
+
+{% if adocoes %}
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead class="table-success">
+        <tr>
+          <th>Animal</th>
+          <th>Adotante</th>
+          <th>Data do Pedido</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for adocao in adocoes %}
+          <tr>
+            <td>{{ adocao.animal.nome }}</td>
+            <td>{{ adocao.adotante.username }}</td>
+            <td>{{ adocao.data_pedido|date:"d/m/Y H:i" }}</td>
+            <td>
+              {% if adocao.aprovado %}
+                <span class="badge bg-success">Aprovado</span>
+              {% else %}
+                <span class="badge bg-warning text-dark">Pendente</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if not adocao.aprovado %}
+                <a href="{% url 'aprovar_adocao' adocao.id %}" class="btn btn-sm btn-success">Aprovar</a>
+                <a href="{% url 'recusar_adocao' adocao.id %}" class="btn btn-sm btn-danger">Recusar</a>
+              {% else %}
+                <button class="btn btn-sm btn-secondary" disabled>Concluído</button>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <p class="text-center">Nenhum pedido de adoção recebido até o momento 🐾</p>
+{% endif %}
+{% endblock %}
