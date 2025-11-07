@@ -1,21 +1,20 @@
-
 # 🐾 SaquaDot — Adoção Responsável em Saquarema  
 
 > Um sistema web desenvolvido para facilitar o processo de **adoção responsável de animais**, conectando cuidadores e adotantes de forma simples, segura e intuitiva.
 
 ---
- 
+
 ## 📋 Sumário  
-1. [Visão Geral](#visao-geral)  
-2. [Principais Funcionalidades](#principais-funcionalidades)  
-3. [Tecnologias Utilizadas](#tecnologias-utilizadas)  
-4. [Instalação e Configuração](#instalacao-e-configuracao)  
-5. [Como Usar](#como-usar)  
-6. [Estrutura do Projeto](#estrutura-do-projeto)   
-7. [Futuras Implementações](#futuras-implementacoes)
-   
+1. [Visão Geral](#visão-geral-)  
+2. [Principais Funcionalidades](#principais-funcionalidades-)  
+3. [Tecnologias Utilizadas](#tecnologias-utilizadas-)  
+4. [Instalação e Configuração](#instalação-e-configuração-)    
+5. [Estrutura do Projeto](#estrutura-do-projeto-)  
+6. [Futuras Implementações](#futuras-implementações-)
+
 ---
 
+<a id="visão-geral-"></a>
 ## 💡 Visão Geral  
 
 O **SaquaDot** é um aplicativo web criado para promover a adoção responsável de cães e gatos na cidade de **Saquarema – RJ**.  
@@ -25,6 +24,7 @@ Desenvolvido com **Django (Python)** e **Bootstrap**, o sistema conta com um des
 
 ---
 
+<a id="principais-funcionalidades-"></a>
 ## ✨ Principais Funcionalidades  
 
 ### 🧑‍💻 Usuário (Adotante)
@@ -41,7 +41,7 @@ Desenvolvido com **Django (Python)** e **Bootstrap**, o sistema conta com um des
 - Aprovar ou recusar solicitações de adoção.  
 - Receber notificações automáticas sobre novos pedidos.  
 
-OBS: Atualmente não há uma distinção entre contas de Adotante e Cuidador. Um pode fazer o que o outo faz.
+**OBS:** Atualmente não há uma distinção entre contas de Adotante e Cuidador. Um pode fazer o que o outro faz.
 
 ### 🔔 Sistema de Notificações
 - Exibe notificações em tempo real.  
@@ -55,6 +55,7 @@ OBS: Atualmente não há uma distinção entre contas de Adotante e Cuidador. Um
 
 ---
 
+<a id="tecnologias-utilizadas-"></a>
 ## 🛠️ Tecnologias Utilizadas  
 
 | Categoria | Tecnologias |
@@ -67,6 +68,7 @@ OBS: Atualmente não há uma distinção entre contas de Adotante e Cuidador. Um
 
 ---
 
+<a id="instalação-e-configuração-"></a>
 ## ⚙️ Instalação e Configuração  
 
 ### 🔧 Pré-requisitos  
@@ -103,6 +105,7 @@ python manage.py runserver
 
 ---
 
+<a id="estrutura-do-projeto-"></a>
 ## 📁 Estrutura do Projeto  
 
 ```
@@ -140,16 +143,18 @@ SaquaDot/
 │
 ├── manage.py                 # Script principal do Django (migrações, servidor, etc.)
 │
-└── README                    # Documentação do projeto (descrição, instalação, uso)
-
+└── README.md                 # Documentação do projeto (descrição, instalação, uso)
 ```
 
+---
+
+<a id="futuras-implementações-"></a>
 ## 🚀 Futuras Implementações  
 
 - [ ] Chat entre cuidador e adotante.  
-- [ ] Sistema de campanhas para ONGs (atualmente só o admin pode cadastar campanhas).
+- [ ] Sistema de campanhas para ONGs (atualmente só o admin pode cadastrar campanhas).  
 - [ ] Filtros avançados (porte, raça, localização).  
-- [ ] Upload múltiplo de fotos por animal.    
+- [ ] Upload múltiplo de fotos por animal.  
 
 ---
 
