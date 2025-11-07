@@ -11,7 +11,7 @@
 3. [Tecnologias Utilizadas](#tecnologias-utilizadas)  
 4. [Instalação e Configuração](#instalacao-e-configuracao)  
 5. [Como Usar](#como-usar)  
-6. [Estrutura do Projeto](#estrutura-do-projeto)  
+6. [Estrutura do Projeto](#estrutura-do-projeto)   
 7. [Futuras Implementações](#futuras-implementacoes)
    
 ---
