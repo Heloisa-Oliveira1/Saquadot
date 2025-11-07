@@ -4,15 +4,15 @@
 > Um sistema web desenvolvido para facilitar o processo de **adoção responsável de animais**, conectando cuidadores e adotantes de forma simples, segura e intuitiva.
 
 ---
-
+ 
 ## 📋 Sumário  
-1. [Visão Geral](#visão-geral)  
+1. [Visão Geral](#visao-geral)  
 2. [Principais Funcionalidades](#principais-funcionalidades)  
 3. [Tecnologias Utilizadas](#tecnologias-utilizadas)  
-4. [Instalação e Configuração](#instalação-e-configuração)  
+4. [Instalação e Configuração](#instalacao-e-configuracao)  
 5. [Como Usar](#como-usar)  
-6. [Estrutura do Projeto](#estrutura-do-projeto)   
-7. [Futuras Implementações](#futuras-implementações)
+6. [Estrutura do Projeto](#estrutura-do-projeto)  
+7. [Futuras Implementações](#futuras-implementacoes)
    
 ---
 
