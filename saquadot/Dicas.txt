@@ -1,8 +1,5 @@
 http://127.0.0.1:8000/admin
 
-Usuario: Heloisa
-Senha: alice1212
-
 Para rodar app: 
 
 -> cd saquadot (# No terminal)
@@ -10,6 +7,7 @@ Para rodar app:
 -> Ativar Venv (.\.venv\Scripts\activate)
 -> Instalar o django (pip install django)
 -> Instalar: python -m pip install Pillow (# Para trabalhar com upload e manipulação de imagens)
+-> Opcional: python manage.py createsuperuser (# Criar um superusuário)
 -> Rodar projeto: python manage.py runserver (# Setifique-se de estar na pasta certa no terminal)
 
 Salvar no github:
