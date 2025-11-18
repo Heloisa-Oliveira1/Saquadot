@@ -1,0 +1,19 @@
+http://127.0.0.1:8000/admin
+
+Para rodar app: 
+
+-> cd saquadot (# No terminal)
+-> Criar venv (python -m venv .venv)
+-> Ativar Venv (.\.venv\Scripts\activate)
+-> Instalar o django (pip install django)
+->python -m pip install Pillow
+-> Instalar: python -m pip install Pillow (# Para trabalhar com upload e manipulação de imagens)
+-> Opcional: python manage.py createsuperuser (# Criar um superusuário)
+-> Rodar projeto: python manage.py runserver (# Setifique-se de estar na pasta certa no terminal)
+
+Salvar no github:
+
+git add . -> # Adicionar todos os arquivos
+git commit -m "Criado alguns posts" -> # Criar commit com mensagem
+git push -> # Código no repositório remoto
+

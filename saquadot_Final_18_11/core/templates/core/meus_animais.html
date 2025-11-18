@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h3 class="text-center mb-4"><b>Meus Animais Cadastrados</b></h3>
+
+<div class="text-end mb-3">
+  <a href="{% url 'cadastrar_animal' %}" class="btn btn-green">+ Novo Animal</a>
+</div>
+
+<div class="row">
+  {% for animal in animais %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nome }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ animal.nome }}</h5>
+          <p>{{ animal.descricao|truncatechars:80 }}</p>
+          <div class="d-flex justify-content-between">
+            <a href="{% url 'editar_animal' animal.id %}" class="btn btn-sm btn-warning">Editar</a>
+            <a href="{% url 'excluir_animal' animal.id %}" class="btn btn-sm btn-danger">Excluir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-center">Você ainda não cadastrou nenhum animal.</p>
+  {% endfor %}
+</div>
+{% endblock %}
