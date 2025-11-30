@@ -92,6 +92,7 @@ python -m venv .venv
 
 # 3. Instalar as dependências
 pip install django
+pip install django-tinymce
 python -m pip install Pillow
 
 # 4. Criar um superusuário (opcional)
