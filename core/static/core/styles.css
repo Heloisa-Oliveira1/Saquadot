@@ -1,0 +1,104 @@
+/* 🌍 Estilos Globais (base.html) */
+html, body { height: 100%; }
+body { 
+  background-color: #f8f9fa; 
+  display: flex; 
+  flex-direction: column; 
+}
+
+/* 🔝 Navbar e Footer */
+.navbar { background-color: #198754; }
+.navbar a, .navbar-brand { color: white !important; }
+footer { 
+  background-color: #198754; 
+  color: white; 
+  text-align: center; 
+  padding: 15px; 
+  margin-top: auto; 
+}
+
+/* 🟢 Botões Personalizados */
+.btn-green { background-color: #198754; color: white; }
+.btn-green:hover { background-color: #157347; color: white; }
+
+.copiar-btn { font-size: 0.9rem; padding: 2px 6px; border-radius: 6px; }
+.copiar-btn:hover { background-color: #198754; color: white; }
+
+/* 🔽 Menu Dropdown */
+.dropdown-menu { background-color: #198754; border: none; }
+.dropdown-menu .dropdown-item { color: white; }
+.dropdown-menu .dropdown-item:hover { background-color: #157347; color: #fff; }
+
+/* 🌿 Toasts (Notificações) */
+.toast {
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  min-width: 250px;
+  max-width: 350px;
+  line-height: 1.2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.4s ease-out;
+  opacity: 0.95;
+}
+.toast-body { padding: 0.4rem 0.5rem; display: flex; align-items: center; gap: 8px; }
+.toast .btn-close { transform: scale(0.8); margin-right: 6px; }
+
+.toast.bg-success { background: linear-gradient(135deg, #198754, #25a55f); }
+.toast.bg-danger, .toast.bg-error { background: linear-gradient(135deg, #7a0f0f, #b32020); }
+.toast.bg-warning { background: linear-gradient(135deg, #b68100, #ffc107); color: #000; }
+
+@keyframes slideUp {
+  from { transform: translateY(15px); opacity: 0; }
+  to { transform: translateY(0); opacity: 0.95; }
+}
+
+/* ✨ Cards Padrão */
+.card {
+  position: relative;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  /* Define uma borda inicial sutil para reservar o espaço e evitar pulos */
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  /* Transição suave para todas as propriedades animadas */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.card-img-top {
+  height: 260px; /* 📏 Tamanho padrão para todas as imagens de cards */
+  object-fit: cover;
+  object-position: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 🐾 Efeito de Hover (ativado pela classe .card-hover) */
+.card-hover:hover {
+  transform: scale(1.03); /* Leve zoom */
+  box-shadow: 0 0 15px 4px rgba(25, 135, 84, 0.6); /* Brilho verde */
+  border-color: #198754; /* Muda a cor da borda para verde */
+  cursor: pointer;
+}
+
+/* 🏷️ Badge de "Já Solicitado" no Card */
+.badge-solicitado {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ffc107; /* Amarelo */
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Efeito opcional na imagem ao passar o mouse */
+.card-hover:hover .card-img-top {
+  opacity: 0.95;
+}

@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h3 class="text-center mb-4"><b>Meus Animais Cadastrados</b></h3>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div class="btn-group">
+    <a href="{% url 'meus_animais' %}" class="btn btn-outline-secondary {% if not status %}active{% endif %}">Todos</a>
+    <a href="?status=disponiveis" class="btn btn-outline-secondary {% if status == 'disponiveis' %}active{% endif %}">Disponíveis</a>
+    <a href="?status=adotados" class="btn btn-outline-secondary {% if status == 'adotados' %}active{% endif %}">Adotados</a>
+  </div>
+  <a href="{% url 'cadastrar_animal' %}" class="btn btn-green">+ Novo Animal</a>
+</div>
+
+<div class="row">
+  {% for animal in animais %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 card-hover">
+        <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nome }}">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ animal.nome }}
+            {% if animal.adotado %}
+              <span class="badge bg-success ms-1">Adotado</span>
+            {% endif %}
+          </h5>
+          <p class="card-text small text-muted">{{ animal.especie }} • {{ animal.sexo|default_if_none:"?" }} • {{ animal.porte|default_if_none:"-" }}</p>
+          <p class="card-text">{{ animal.descricao|truncatechars:80 }}</p>
+          <div class="d-flex justify-content-between">
+            <a href="{% url 'editar_animal' animal.id %}" class="btn btn-sm btn-warning">Editar</a>
+            <a href="{% url 'excluir_animal' animal.id %}" class="btn btn-sm btn-danger">Excluir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-center">Você ainda não cadastrou nenhum animal.</p>
+  {% endfor %}
+</div>
+{% endblock %}

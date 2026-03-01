@@ -1,0 +1,119 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2 class="text-center mb-4"><b>Animais Disponíveis para Adoção </b></h2>
+
+<!-- 🔍 FILTROS -->
+<form method="get" id="filtroForm" class="row g-3 mb-4 justify-content-center align-items-center">
+  <div class="col-md-auto col-sm-6">
+    <select name="especie" class="form-select">
+      <option value="">Todas as espécies</option>
+      <option value="Cachorro" {% if request.GET.especie == 'Cachorro' %}selected{% endif %}>🐶 Cachorros</option>
+      <option value="Gato" {% if request.GET.especie == 'Gato' %}selected{% endif %}>🐱 Gatos</option>
+    </select>
+  </div>
+  <div class="col-md-auto col-sm-6">
+    <select name="porte" class="form-select">
+      <option value="">Todos os portes</option>
+      {% for valor, rotulo in porte_choices %}
+        <option value="{{ valor }}" {% if request.GET.porte == valor %}selected{% endif %}>{{ rotulo }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-auto col-sm-12 order-sm-last order-md-0">
+    <div class="btn-group w-100" role="group" aria-label="Filtro de sexo">
+      <input type="radio" class="btn-check" name="sexo" id="sexoTodos" value="" autocomplete="off" {% if not request.GET.sexo %}checked{% endif %}>
+      <label class="btn btn-outline-success" for="sexoTodos">Todos</label>
+
+      <input type="radio" class="btn-check" name="sexo" id="sexoMacho" value="Macho" autocomplete="off" {% if request.GET.sexo == 'Macho' %}checked{% endif %}>
+      <label class="btn btn-outline-success" for="sexoMacho">♂️ Macho</label>
+
+      <input type="radio" class="btn-check" name="sexo" id="sexoFemea" value="Fêmea" autocomplete="off" {% if request.GET.sexo == 'Fêmea' %}checked{% endif %}>
+      <label class="btn btn-outline-success" for="sexoFemea">♀️ Fêmea</label>
+    </div>
+  </div>
+  <div class="col-md-auto col-sm-6">
+    <select name="idade" class="form-select">
+      <option value="">Todas as idades</option>
+      {% for valor, rotulo in idade_choices %}
+        <option value="{{ valor }}" {% if request.GET.idade == valor %}selected{% endif %}>
+            {{ rotulo }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  {% if request.GET.especie or request.GET.idade or request.GET.porte or request.GET.sexo %}
+  <div class="col-md-auto col-6">
+    <a href="{% url 'home' %}" class="btn btn-secondary w-100">Limpar</a>
+  </div>
+  {% endif %}
+</form>
+
+<!-- 🐾 LISTAGEM DE ANIMAIS -->
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+  {% for animal in page_obj %}
+    <div class="col">
+      <div class="card h-100 shadow-sm card-hover">
+        {% if user.is_authenticated and animal.id in animais_solicitados %}
+          <div class="badge-solicitado">
+            ⏳ Pedido Enviado
+          </div>
+        {% endif %}
+        <img src="{{ animal.foto.url }}" class="card-img-top" alt="{{ animal.nome }}">
+        <div class="card-body">
+          <h5 class="card-title">
+            <!-- stretched-link faz o card inteiro ser clicável -->
+            <a href="{% url 'animal_detail' animal.id %}" class="text-decoration-none text-dark stretched-link">
+              {{ animal.nome }}
+            </a>
+          </h5>
+          <p class="card-text small text-muted">{{ animal.especie }} • {{ animal.sexo|default_if_none:"?" }} • {{ animal.porte|default_if_none:"-" }} • {{ animal.idade }}</p>
+          <p class="card-text">{{ animal.descricao|truncatechars:100 }}</p>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="text-center mt-4">
+      <h5 class="text-muted">😿 Nenhum animal encontrado com esses filtros.</h5>
+      <a href="{% url 'home' %}" class="btn btn-outline-success mt-2">Ver todos novamente</a>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- 📄 Controles de Paginação -->
+{% if page_obj.has_other_pages %}
+<nav class="mt-5">
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link text-success" href="?page={{ page_obj.previous_page_number }}&especie={{ request.GET.especie }}&porte={{ request.GET.porte }}&sexo={{ request.GET.sexo }}&idade={{ request.GET.idade }}">Anterior</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+    {% endif %}
+
+    <li class="page-item active" aria-current="page">
+      <span class="page-link bg-success border-success">{{ page_obj.number }}</span>
+    </li>
+
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link text-success" href="?page={{ page_obj.next_page_number }}&especie={{ request.GET.especie }}&porte={{ request.GET.porte }}&sexo={{ request.GET.sexo }}&idade={{ request.GET.idade }}">Próximo</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+<script>
+  // 🔄 Auto-submissão do formulário ao alterar qualquer filtro
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('filtroForm');
+    const inputs = form.querySelectorAll('select, input');
+
+    inputs.forEach(input => {
+      input.addEventListener('change', () => form.submit());
+    });
+  });
+</script>
+{% endblock %}
