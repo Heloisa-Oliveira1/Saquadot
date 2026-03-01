@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'core',
     'users',
     'tinymce',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 # MIDDLEWARE
@@ -106,3 +108,13 @@ TINYMCE_DEFAULT_CONFIG = {
                "bullist numlist outdent indent | link image media | code preview",
     "media_live_embeds": True,
 }
+
+import cloudinary
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'ddxgh1qdn',
+    'API_KEY': '755769767245173',
+    'API_SECRET': '-cnIxfpCQNMyLwGpdOWWgrueX8E',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
