@@ -95,6 +95,10 @@ pip install django
 pip install django-tinymce
 python -m pip install Pillow
 
+ou
+
+pip install -r requirements.txt
+
 # 4. Criar um superusuário (opcional)
 python manage.py createsuperuser
 
