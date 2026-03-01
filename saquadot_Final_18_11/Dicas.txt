@@ -1,7 +1,0 @@
-http://127.0.0.1:8000/admin
-
-Salvar no github:
-
-git add . -> # Adicionar todos os arquivos
-git commit -m "Criado alguns posts" -> # Criar commit com mensagem
-git push -> # Código no repositório remoto
