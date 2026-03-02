@@ -5,7 +5,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key')
-
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
@@ -32,7 +31,7 @@ INSTALLED_APPS = [
 # MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # PRODUÇÃO
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,16 +84,31 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# STATIC FILES (IMPORTANTE PARA O RENDER)
+# STATIC FILES
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# MEDIA FILES
+# MEDIA (não será mais usada localmente)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# CLOUDINARY CONFIG
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'ddxgh1qdn',
+    'API_KEY': '755769767245173',
+    'API_SECRET': '-cnIxfpCQNMyLwGpdOWWgrueX8E',
+}
+
+# DJANGO 5+ STORAGE SYSTEM
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # DEFAULT FIELD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -108,13 +122,3 @@ TINYMCE_DEFAULT_CONFIG = {
                "bullist numlist outdent indent | link image media | code preview",
     "media_live_embeds": True,
 }
-
-import cloudinary
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'ddxgh1qdn',
-    'API_KEY': '755769767245173',
-    'API_SECRET': '-cnIxfpCQNMyLwGpdOWWgrueX8E',
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
