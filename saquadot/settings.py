@@ -112,7 +112,7 @@ TINYMCE_DEFAULT_CONFIG = {
 import cloudinary
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'Root',
+    'CLOUD_NAME': 'ddxgh1qdn',
     'API_KEY': '755769767245173',
     'API_SECRET': '-cnIxfpCQNMyLwGpdOWWgrueX8E',
 }
