@@ -159,7 +159,7 @@ SaquaDot/
 - [ ] Chat entre cuidador e adotante.  
 - [ ] Sistema de campanhas para ONGs (atualmente só o admin pode cadastrar campanhas).  
 - [ ] Filtros avançados (porte, raça, localização).  
-- [ x] Upload múltiplo de fotos por animal.  
+- [ ] Upload múltiplo de fotos por animal.  
 
 ---
 
